@@ -263,7 +263,7 @@ erDiagram
 ```
 bibliotech-laravel/
 ├── 📂 app/
-│   ├── 📂 Http/Controllers/     # Contrôleurs Laravel français
+│   ├── 📂 Http/Controllers/     # Contrôleurs Laravel
 │   │   ├── AccueilController.php  # Page d'accueil avec statistiques
 │   │   └── LivreController.php    # Gestion des livres (CRUD)
 │   ├── 📂 Models/              # Modèles Eloquent (futurs)
@@ -274,7 +274,7 @@ bibliotech-laravel/
 │   ├── 📂 seeders/            # Données de test (futurs)
 │   └── 📂 factories/          # Factories pour les tests (futurs)
 ├── 📂 resources/
-│   ├── 📂 views/              # Templates Blade français
+│   ├── 📂 views/              # Templates Blade
 │   │   ├── 📂 livres/         # Vues des livres
 │   │   │   ├── index.blade.php  # Liste des livres
 │   │   │   ├── show.blade.php   # Détail d'un livre
@@ -288,7 +288,7 @@ bibliotech-laravel/
 │   ├── 📂 css/               # Styles CSS personnalisés
 │   └── 📂 js/                # JavaScript (futurs)
 ├── 📂 routes/
-│   ├── web.php               # Routes web françaises
+│   ├── web.php               # Routes web 
 │   └── api.php               # Routes API (futurs)
 ├── 📂 scripts/
 │   ├── install.bat           # Installation automatique Windows
