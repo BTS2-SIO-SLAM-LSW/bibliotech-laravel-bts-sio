@@ -489,8 +489,6 @@ tail storage/logs/laravel.log
 ### **🆘 Support**
 - **Issues GitHub** : Pour les bugs et demandes de fonctionnalités
 - **Discussions** : Pour les questions générales et l'aide
-- **Wiki** : Documentation détaillée et FAQ
-
 
 ---
 
