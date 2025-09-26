@@ -20,7 +20,8 @@ class Livre extends Model
         'resume',
         'couverture',
         'disponible',
-        'categorie'
+        'categorie',
+        'category_id'
     ];
     
     protected $casts = [
@@ -44,5 +45,31 @@ class Livre extends Model
     {
         return $query->where('titre', 'like', '%' . $terme . '%')
                     ->orWhere('auteur', 'like', '%' . $terme . '%');
+    }
+
+    /**
+     * Un livre appartient à une catégorie
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Scope pour filtrer par catégorie
+     */
+    public function scopeParCategorie($query, $categorySlug)
+    {
+        return $query->whereHas('category', function ($q) use ($categorySlug) {
+            $q->where('slug', $categorySlug);
+        });
+    }
+
+    /**
+     * Accesseur pour l'URL du livre
+     */
+    public function getUrlAttribute()
+    {
+        return route('livre.show', $this->id);
     }
 }

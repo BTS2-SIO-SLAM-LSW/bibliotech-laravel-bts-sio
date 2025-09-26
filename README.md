@@ -311,7 +311,8 @@ bibliotech-laravel/
 ### **🎯 Stack Principal**
 - **Framework** : Laravel 12.x ✅
 - **Langage** : PHP 8.3+ ✅
-- **Base de données** : SQLite 3 ✅ (PostgreSQL en Séance 2)
+- **Base de données** : SQLite 3 ✅ (Léger et idéal apprentissage)
+- **ORM** : Eloquent avec relations ✅
 - **Frontend** : Blade Templates + Bootstrap 5 ✅
 - **Styles** : CSS personnalisé avec illustrations ✅
 - **Icons** : Font Awesome ✅
@@ -449,7 +450,7 @@ tail storage/logs/laravel.log
 | Séance | Documentation | Exercices | Code Source | Status |
 |---------|---------------|-----------|-------------|---------|
 | **Séance 1** | [📖 Guide S1](docs/seance-01/00-README.md) | [💪 Exercices S1](docs/seance-01/05-EXERCICES-PRATIQUES.md) | [📁 Code S1](docs/seance-01/) | ✅ **Terminé** |
-| **Séance 2** | 🔄 Base de données | 🔄 Migrations et Modèles | 🔄 PostgreSQL | 🔄 Futur |
+| **Séance 2** | [� Guide S2](docs/seance-02/00-README.md) | [� Exercices S2](docs/seance-02/05-EXERCICES-PRATIQUES.md) | [�️ SQLite & ORM](docs/seance-02/) | ✅ **Terminé** |
 | **Séance 3** | 🔄 CRUD et Formulaires | 🔄 Validation | 🔄 Sessions | 🔄 Futur |
 
 ---
@@ -457,7 +458,8 @@ tail storage/logs/laravel.log
 ## 🚀 **Évolutions Futures**
 
 ### **Séances Suivantes**
-- **Séance 2** : Migration vers PostgreSQL, modèles Eloquent
+- **Séance 2** : ✅ **SQLite**, Eloquent ORM, Relations, CI/CD
+- **Séance 3** : CRUD complet, Formulaires, Validation
 - **Séance 3** : CRUD complet, formulaires de création/édition
 - **Séance 4** : Authentification Laravel, système de rôles
 - **Séance 5** : Relations entre entités, API REST
@@ -489,9 +491,6 @@ tail storage/logs/laravel.log
 ### **🆘 Support**
 - **Issues GitHub** : Pour les bugs et demandes de fonctionnalités
 - **Discussions** : Pour les questions générales et l'aide
-- **Wiki** : Documentation détaillée et FAQ
-- **Email Formateur** : contact@formation-laravel.fr
-
 ---
 
 ## 📄 **Licence**
@@ -502,7 +501,7 @@ Ce projet est sous licence Creative Commons BY-SA 3.0. Voir le fichier [LICENSE]
 
 **🎯 Prêt à apprendre Laravel avec BiblioTech ? Lancez `scripts\start-simple.bat` !**
 
-*✨ Version Laravel 12 - Formation BTS SIO SLAM - Séance 1 Complétée - 2025*
+*✨ Version Laravel 12 - Formation BTS SIO SLAM - Séances 1 & 2 Complétées - 2025*
 
 [![Démarrage Rapide](https://img.shields.io/badge/Démarrage-Rapide-success?style=for-the-badge&logo=laravel)](http://localhost:8000)
 [![Documentation](https://img.shields.io/badge/Documentation-Complète-blue?style=for-the-badge&logo=gitbook)](docs/)
