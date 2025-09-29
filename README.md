@@ -229,7 +229,7 @@ erDiagram
 | 🎓 Séance | 📚 Concepts Clés | 🛠️ Technologies | 🎯 Cas d'Utilisation | ✅ Status |
 |-----------|------------------|------------------|----------------------|-----------|
 | **S1** | MVC, Routes, Blade | Laravel, SQLite | Consultation catalogue, Recherche | **✅ Terminé** |
-| **S2** | Base de données, Migrations | PostgreSQL, Eloquent ORM | Gestion des données, Seeders | 🔄 Futur |
+| **S2** | Base de données, Migrations | SQLite, Eloquent ORM | Gestion des données, Seeders | 🔄 Futur |
 | **S3** | CRUD, Formulaires | Validation, Sessions, Flash Messages | Inscription, Profil utilisateur | 🔄 Futur |
 | **S4** | Authentification, Sécurité | Laravel Auth, Middleware | Connexion, Rôles, Permissions | 🔄 Futur |
 | **S5** | Relations, APIs | Relations Eloquent, API REST | Emprunts, Réservations, Relations | 🔄 Futur |
