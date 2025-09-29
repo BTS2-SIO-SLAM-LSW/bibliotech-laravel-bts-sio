@@ -21,7 +21,7 @@ class Livre extends Model
         'couverture',
         'disponible',
         'categorie',
-        'category_id'
+        'categorie_id'
     ];
     
     protected $casts = [
@@ -50,18 +50,26 @@ class Livre extends Model
     /**
      * Un livre appartient à une catégorie
      */
-    public function category()
+    public function categorie()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 
     /**
      * Scope pour filtrer par catégorie
      */
-    public function scopeParCategorie($query, $categorySlug)
+    public function scopeParCategorie($query, $categorieNom)
     {
-        return $query->whereHas('category', function ($q) use ($categorySlug) {
-            $q->where('slug', $categorySlug);
+        return $query->where('categorie', $categorieNom);
+    }
+
+    /**
+     * Scope pour filtrer par catégorie via relation
+     */
+    public function scopeParCategorieSlug($query, $categorieSlug)
+    {
+        return $query->whereHas('categorie', function ($q) use ($categorieSlug) {
+            $q->where('slug', $categorieSlug);
         });
     }
 
