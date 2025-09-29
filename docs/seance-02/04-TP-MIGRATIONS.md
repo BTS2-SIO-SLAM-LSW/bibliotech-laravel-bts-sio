@@ -29,7 +29,7 @@ php artisan migrate:status
 cp database/database.sqlite database/backup_$(date +%Y%m%d_%H%M%S).sqlite
 
 # 3. Vérifier que les modèles existants fonctionnent
-php artisan tinker --execute="echo 'Categories: ' . App\Models\Category::count() . PHP_EOL;"
+php artisan tinker --execute="echo 'Categories: ' . App\Models\Categorie::count() . PHP_EOL;"
 ```
 
 ---
@@ -397,7 +397,7 @@ class Livre extends Model
         'resume',
         'couverture',
         'disponible',
-        'category_id'
+        'categorie_id'
     ];
     
     protected $casts = [
@@ -413,9 +413,9 @@ class Livre extends Model
     }
     
     // Relation existante vers catégorie
-    public function category()
+    public function categorie()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class);
     }
     
     // Scopes existants
@@ -460,9 +460,9 @@ php artisan tinker
 >>> App\Models\Livre::recherche('John')->get()->pluck('titre')
 
 // 4. Tester le eager loading complet
->>> $livres = App\Models\Livre::with(['auteur', 'category'])->get()
+>>> $livres = App\Models\Livre::with(['auteur', 'categorie'])->get()
 >>> $livres->each(function($livre) {
-    echo $livre->titre . " par " . $livre->auteur->nom_complet . " [" . $livre->category->nom . "]" . PHP_EOL;
+    echo $livre->titre . " par " . $livre->auteur->nom_complet . " [" . $livre->categorie->nom . "]" . PHP_EOL;
 });
 ```
 
@@ -494,7 +494,7 @@ php artisan tinker
 >>> $nouveauLivre = App\Models\Livre::create([
     'titre' => 'Test avec Nouvel Auteur',
     'auteur_id' => $nouvelAuteur->id,
-    'category_id' => App\Models\Category::first()->id,
+    'categorie_id' => App\Models\Categorie::first()->id,
     'disponible' => true
 ]);
 >>> $nouveauLivre->auteur->nom_complet
@@ -578,7 +578,7 @@ erDiagram
         int id PK
         string titre
         int auteur_id FK
-        int category_id FK
+        int categorie_id FK
         year annee
         int nb_pages
         string isbn UK
