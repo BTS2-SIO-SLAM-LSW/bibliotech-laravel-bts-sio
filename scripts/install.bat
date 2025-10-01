@@ -53,7 +53,11 @@ echo ========================================
 pause
 if exist node_modules rmdir /s /q node_modules
 if exist package-lock.json del package-lock.json
+
+echo.
+echo Installation des dependances Node.js et Bootstrap...
 npm install
+npm install bootstrap@5.3.3 @popperjs/core@2.11.8
 
 echo.
 echo Configuration Laravel...

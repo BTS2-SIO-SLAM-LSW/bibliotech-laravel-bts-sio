@@ -49,6 +49,15 @@ if not exist "vendor\autoload.php" (
 echo ✅ Dependances PHP installees
 
 echo.
+echo Verification de Bootstrap...
+if exist "node_modules\bootstrap\package.json" (
+    echo ✅ Bootstrap installe
+) else (
+    echo ⚠️  ATTENTION: Bootstrap non trouve
+    echo Executez: npm install bootstrap@5.3.3 @popperjs/core@2.11.8
+)
+
+echo.
 echo 3. Test de la configuration Laravel...
 php artisan --version 2>nul
 if errorlevel 1 (
