@@ -1,11 +1,19 @@
 # 📊 Séance 2 — Base de Données SQLite & CI/CD
 
-**Durée :** 3 heures  
+**Duré### **5. TP Pratique : Exercices Complets**
+💻 **[05-TP-PRATIQUE-EXERCICES.md](05-TP-PRATIQUE-EXERCICES.md)**
+- 5 modules d'exercices progressifs
+- Migrations → Modèles → Relations → Requêtes avancées
+- Tests de performance et optimisation
+- Validation autonome des compétences3 heures  
 **Objectif :** Remplacer les données en dur par une vraie base de données SQLite avec pipeline CI/CD
 
 ## 🎤 Support de Présentation
 📽️ **[PRÉSENTATION ENSEIGNANT](00-PRESENTATION-SEANCE-02.md)** - Support de cours au format diapo pour présenter la séance (Marp/reveal.js compatible)
 👨‍🏫 **[GUIDE ENSEIGNANT](00-GUIDE-ENSEIGNANT.md)** - Instructions détaillées pour utiliser la présentation et animer la séance
+
+## 📚 Organisation Pédagogique
+📖 **[ORGANISATION PÉDAGOGIQUE](00-ORGANISATION-PEDAGOGIQUE.md)** - Guide pour comprendre la structure et la différence entre TP guidé et TP autonome
 
 ---
 
@@ -39,15 +47,15 @@
 - Conventions Laravel
 
 ### **3. Découverte Pratique**  
-🔍 **[03-TP-DECOUVERTE-DATABASE.md](03-TP-DECOUVERTE-DATABASE.md)**
+🔍 **[03-DECOUVERTE-DATABASE.md](03-DECOUVERTE-DATABASE.md)**
 - Explorer la structure SQLite
 - Naviguer avec Tinker
 - Tester les relations existantes
 - Analyser les données
 
-### **4. Création de Structure**
-🛠️ **[04-TP-MIGRATIONS.md](04-TP-MIGRATIONS.md)**
-- Créer des migrations
+### **4. TP Pratique : Migrations**
+🛠️ **[04-TP-PRATIQUE-MIGRATIONS.md](04-TP-PRATIQUE-MIGRATIONS.md)**
+- Créer des migrations pas à pas
 - Modifier des tables existantes
 - Gérer les relations complexes
 - Rollback et maintenance

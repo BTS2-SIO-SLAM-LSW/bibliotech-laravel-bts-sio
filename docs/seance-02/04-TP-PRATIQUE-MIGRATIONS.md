@@ -1,4 +1,4 @@
-# 🛠️ TP Migrations : Créer et Gérer la Structure
+# 🛠️ TP Pratique : Migrations Laravel
 
 **Apprendre à créer et modifier la structure de base de données avec Laravel**
 
@@ -599,7 +599,7 @@ erDiagram
 
 Excellente maîtrise des migrations ! Continuez avec :
 
-1. **💪 Exercices pratiques avancés** → [05-EXERCICES-PRATIQUES.md](05-EXERCICES-PRATIQUES.md)
+1. **💪 Exercices pratiques avancés** → [05-TP-PRATIQUE-EXERCICES.md](05-TP-PRATIQUE-EXERCICES.md)
 2. **🎯 Évaluation des compétences** → [06-EVALUATION-COMPETENCES.md](06-EVALUATION-COMPETENCES.md)
 3. **🚀 CI/CD et déploiement** → [07-CICD-GITHUB-ACTIONS.md](07-CICD-GITHUB-ACTIONS.md)
 

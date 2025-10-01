@@ -325,8 +325,8 @@ Complétez ce tableau avec vos observations :
 
 Maintenant que vous maîtrisez la structure existante :
 
-1. **🛠️ Créer vos migrations** → [04-TP-MIGRATIONS.md](04-TP-MIGRATIONS.md)
-2. **💪 Exercices pratiques** → [05-EXERCICES-PRATIQUES.md](05-EXERCICES-PRATIQUES.md)
+1. **🛠️ Créer vos migrations** → [04-TP-PRATIQUE-MIGRATIONS.md](04-TP-PRATIQUE-MIGRATIONS.md)
+2. **💪 Exercices pratiques** → [05-TP-PRATIQUE-EXERCICES.md](05-TP-PRATIQUE-EXERCICES.md)
 3. **🎯 Évaluation finale** → [06-EVALUATION-COMPETENCES.md](06-EVALUATION-COMPETENCES.md)
 
 ---

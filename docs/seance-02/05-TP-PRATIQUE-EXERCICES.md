@@ -1,6 +1,6 @@
-# 💻 Exercices Pratiques Détaillés - Séance 2
+# 💻 TP Pratique : Exercices Complets - Séance 2
 
-**Objectif :** Maîtriser SQLite, Eloquent ORM et les relations entre tables
+**Objectif :** Maîtriser SQLite, Eloquent ORM et les relations entre tables à travers 5 modules progressifs
 
 ---
 
