@@ -3,176 +3,73 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Livre;
+use App\Models\Categorie;
 
 class LivreController extends Controller
 {
     /**
-     * Affichage liste avec données statiques
-     * SÉANCE 1 : Comprendre les collections de données et leur passage aux vues
+     * Affichage liste avec base de données SQLite
+     * SÉANCE 2 : Utiliser Eloquent pour récupérer les données depuis SQLite
      */
     public function index()
     {
-        $livres = [
-            [
-                'id' => 1,
-                'titre' => 'Laravel pour Débutants',
-                'auteur' => 'John Smith',
-                'annee' => 2024,
-                'pages' => 320,
-                'description' => 'Guide complet pour apprendre Laravel étape par étape.',
-                'couverture' => 'laravel'
-            ],
-            [
-                'id' => 2,
-                'titre' => 'Docker en Pratique',
-                'auteur' => 'Marie Dubois',
-                'annee' => 2023,
-                'pages' => 280,
-                'description' => 'Maîtriser la containerisation avec Docker.',
-                'couverture' => 'docker'
-            ],
-            [
-                'id' => 3,
-                'titre' => 'MVC Expliqué Simplement',
-                'auteur' => 'Pierre Martin',
-                'annee' => 2024,
-                'pages' => 195,
-                'description' => 'Comprendre l\'architecture MVC avec des exemples concrets.',
-                'couverture' => 'mvc'
-            ]
-        ];
+        // Récupération des livres avec leurs catégories via Eloquent
+        $livres = Livre::with('categorie')->get();
+
+        // Récupération des catégories pour le filtre
+        $categories = Categorie::actives()->get();
 
         $statistiques = [
-            'totalLivres' => count($livres),
-            'livresDisponibles' => count(array_filter($livres, function($livre) {
-                return !isset($livre['disponible']) || $livre['disponible'] === true;
-            })),
-            'totalCategories' => 3 // Pour la démo
+            'totalLivres' => Livre::count(),
+            'livresDisponibles' => Livre::disponible()->count(),
+            'totalCategories' => Categorie::actives()->count()
         ];
 
         return view('livres.index', [
             'livres' => $livres,
+            'categories' => $categories,
             'stats' => $statistiques,
-            'total' => count($livres)
+            'total' => $livres->count()
         ]);
     }
 
     /**
-     * Affichage détail avec paramètre d'URL
-     * SÉANCE 1 : Comprendre les paramètres de route et la gestion d'erreurs
+     * Affichage détail avec paramètre d'URL et Eloquent
+     * SÉANCE 2 : Utiliser Eloquent pour récupérer un enregistrement spécifique
      */
     public function show($id)
     {
         // Conversion de l'ID en entier pour éviter les erreurs
         $id = (int) $id;
 
-        $livres = [
-            1 => [
-                'id' => 1,
-                'titre' => 'Laravel pour Débutants',
-                'auteur' => 'John Smith',
-                'annee' => 2024,
-                'pages' => 320,
-                'isbn' => '978-2-1234-5678-9',
-                'description' => 'Guide complet pour apprendre Laravel étape par étape. Ce livre couvre tous les aspects fondamentaux du framework PHP le plus populaire.',
-                'couverture' => 'laravel',
-                'disponible' => true,
-                'categorie' => 'Framework PHP'
-            ],
-            2 => [
-                'id' => 2,
-                'titre' => 'Docker en Pratique',
-                'auteur' => 'Marie Dubois',
-                'annee' => 2023,
-                'pages' => 280,
-                'isbn' => '978-2-1234-5679-6',
-                'description' => 'Maîtriser la containerisation avec Docker. Apprenez à créer, déployer et gérer des applications containerisées.',
-                'couverture' => 'docker',
-                'disponible' => true,
-                'categorie' => 'DevOps'
-            ],
-            3 => [
-                'id' => 3,
-                'titre' => 'MVC Expliqué Simplement',
-                'auteur' => 'Pierre Martin',
-                'annee' => 2024,
-                'pages' => 195,
-                'isbn' => '978-2-1234-5680-2',
-                'description' => 'Comprendre l\'architecture MVC avec des exemples concrets. Pattern architectural incontournable du développement moderne.',
-                'couverture' => 'mvc',
-                'disponible' => false,
-                'categorie' => 'Architecture'
-            ]
-        ];
-
-        // Vérification de l'existence du livre
-        if (!isset($livres[$id])) {
-            abort(404, 'Livre non trouvé');
-        }
+        // Récupération du livre avec sa catégorie via Eloquent
+        $livre = Livre::with('categorie')->findOrFail($id);
 
         return view('livres.show', [
-            'livre' => $livres[$id]
+            'livre' => $livre
         ]);
     }
 
     /**
-     * Recherche de livres
-     * SÉANCE 1 : Comprendre la récupération de données de formulaire
+     * Recherche de livres avec Eloquent
+     * SÉANCE 2 : Utiliser les scopes Eloquent pour la recherche
      */
     public function search(Request $request)
     {
         $query = $request->get('q', '');
 
-        $tousLesLivres = [
-            [
-                'id' => 1,
-                'titre' => 'Laravel pour Débutants',
-                'auteur' => 'John Smith',
-                'annee' => 2024,
-                'pages' => 320,
-                'description' => 'Guide complet pour apprendre Laravel étape par étape.',
-                'couverture' => 'laravel'
-            ],
-            [
-                'id' => 2,
-                'titre' => 'Docker en Pratique',
-                'auteur' => 'Marie Dubois',
-                'annee' => 2023,
-                'pages' => 280,
-                'description' => 'Maîtriser la containerisation avec Docker.',
-                'couverture' => 'docker'
-            ],
-            [
-                'id' => 3,
-                'titre' => 'MVC Expliqué Simplement',
-                'auteur' => 'Pierre Martin',
-                'annee' => 2024,
-                'pages' => 195,
-                'description' => 'Comprendre l\'architecture MVC avec des exemples concrets.',
-                'couverture' => 'mvc'
-            ]
-        ];
-
-        // Filtrage des livres selon la requête de recherche
-        $livresFiltres = [];
-        if (!empty($query)) {
-            foreach ($tousLesLivres as $livre) {
-                if (
-                    stripos($livre['titre'], $query) !== false ||
-                    stripos($livre['auteur'], $query) !== false ||
-                    stripos($livre['description'], $query) !== false
-                ) {
-                    $livresFiltres[] = $livre;
-                }
-            }
-        } else {
-            $livresFiltres = $tousLesLivres;
-        }
+        // Utilisation des scopes Eloquent pour la recherche
+        $livres = Livre::with('categorie')
+            ->when($query, function ($queryBuilder, $searchTerm) {
+                return $queryBuilder->recherche($searchTerm);
+            })
+            ->get();
 
         return view('livres.search', [
-            'livres' => $livresFiltres,
+            'livres' => $livres,
             'query' => $query,
-            'total' => count($livresFiltres)
+            'total' => $livres->count()
         ]);
     }
 }

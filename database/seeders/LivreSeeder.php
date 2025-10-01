@@ -32,7 +32,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'Un chef-d\'œuvre de la littérature française qui suit la vie de Jean Valjean.',
                 'couverture' => 'miserables.jpg',
                 'disponible' => true,
-                'categorie' => 'Roman',
                 'categorie_id' => $roman?->id,
             ],
             [
@@ -44,7 +43,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'Maîtriser le framework Laravel avec des exemples pratiques.',
                 'couverture' => 'laravel.jpg',
                 'disponible' => true,
-                'categorie' => 'Informatique',
                 'categorie_id' => $informatique?->id,
             ],
             [
@@ -56,7 +54,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'Un voyage à travers l\'histoire de France des origines à nos jours.',
                 'couverture' => 'histoire.jpg',
                 'disponible' => false,
-                'categorie' => 'Histoire',
                 'categorie_id' => $histoire?->id,
             ],
             [
@@ -68,7 +65,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'Un classique de la science-fiction dans l\'univers d\'Arrakis.',
                 'couverture' => 'dune.jpg',
                 'disponible' => true,
-                'categorie' => 'Science-Fiction',
                 'categorie_id' => $scienceFiction?->id,
             ],
             [
@@ -80,7 +76,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'La biographie officielle du co-fondateur d\'Apple.',
                 'couverture' => 'jobs.jpg',
                 'disponible' => true,
-                'categorie' => 'Biographie',
                 'categorie_id' => $biographie?->id,
             ],
             [
@@ -92,7 +87,6 @@ class LivreSeeder extends Seeder
                 'resume' => 'L\'épopée fantasy la plus célèbre de tous les temps.',
                 'couverture' => 'lotr.jpg',
                 'disponible' => true,
-                'categorie' => 'Fantastique',
                 'categorie_id' => $fantastique?->id,
             ]
         ];

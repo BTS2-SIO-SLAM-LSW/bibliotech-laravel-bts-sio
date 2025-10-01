@@ -20,7 +20,6 @@ class Livre extends Model
         'resume',
         'couverture',
         'disponible',
-        'categorie',
         'categorie_id'
     ];
     

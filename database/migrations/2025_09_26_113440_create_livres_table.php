@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('resume')->nullable();
             $table->string('couverture')->nullable();
             $table->boolean('disponible')->default(true);
-            $table->string('categorie')->nullable();
             $table->timestamps();
             
             // Index pour améliorer les recherches
