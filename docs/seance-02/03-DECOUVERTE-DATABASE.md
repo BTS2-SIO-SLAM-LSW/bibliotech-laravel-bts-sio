@@ -105,15 +105,15 @@ php artisan migrate:fresh --seed
 ```php
 // Dans Tinker
 // 1. Compter les enregistrements
->>> App\Models\Category::count()
+>>> App\Models\Categorie::count()
 >>> App\Models\Livre::count()
 >>> App\Models\Utilisateur::count()
 
 // 2. Voir toutes les catégories
->>> App\Models\Category::all()
+>>> App\Models\Categorie::all()
 
 // 3. Examiner une catégorie en détail
->>> $cat = App\Models\Category::first()
+>>> $cat = App\Models\Categorie::first()
 >>> $cat
 >>> $cat->nom
 >>> $cat->couleur
@@ -138,12 +138,12 @@ php artisan migrate:fresh --seed
 >>> $livre->category
 >>> $livre->category->nom
 
-// 6. Tester la relation Category -> Livres (hasMany)
->>> $category = App\Models\Category::first()
->>> $category->nom
->>> $category->livres
->>> $category->livres->count()
->>> $category->livres->pluck('titre')
+// 6. Tester la relation Categorie -> Livres (hasMany)
+>>> $categorie = App\Models\Categorie::first()
+>>> $categorie->nom
+>>> $categorie->livres
+>>> $categorie->livres->count()
+>>> $categorie->livres->pluck('titre')
 
 // 7. Vérifier que toutes les relations fonctionnent
 >>> App\Models\Livre::all()->each(function($livre) {
@@ -194,7 +194,7 @@ php artisan migrate:fresh --seed
 })->get()->pluck('titre')
 
 // 7. Compter les livres par catégorie
->>> App\Models\Category::withCount('livres')->get()->each(function($cat) {
+>>> App\Models\Categorie::withCount('livres')->get()->each(function($cat) {
     echo $cat->nom . ": " . $cat->livres_count . " livre(s)" . PHP_EOL;
 });
 ```
@@ -251,7 +251,7 @@ php artisan migrate:fresh --seed
 
 ```php
 // 6. Créer une nouvelle catégorie temporaire
->>> $testCat = App\Models\Category::create([
+>>> $testCat = App\Models\Categorie::create([
     'nom' => 'Test Category',
     'description' => 'Catégorie de test',
     'couleur' => '#000000',

@@ -92,31 +92,27 @@ php artisan tinker
 
 ```php
 // 1. Créer une catégorie avec new + save
-$cat = new App\Models\Category();
+$cat = new App\Models\Categorie();
 $cat->nom = "Test Développement";
 $cat->description = "Livres sur la programmation";
 $cat->couleur = "#28a745";
-$cat->icone = "fas fa-code";
-$cat->active = true;
 $cat->save();
 
 // 2. Vérifier le slug automatique
 echo "Slug généré: " . $cat->slug . PHP_EOL;
 
 // 3. Tester la méthode create (mass assignment)
-$cat2 = App\Models\Category::create([
+$cat2 = App\Models\Categorie::create([
     'nom' => 'Design Web',
     'description' => 'Livres sur le design et UX/UI',
-    'couleur' => '#007bff',
-    'icone' => 'fas fa-palette',
-    'active' => true
+    'couleur' => '#007bff'
 ]);
 
 // 4. Compter les catégories
-echo "Nombre de catégories: " . App\Models\Category::count() . PHP_EOL;
+echo "Nombre de catégories: " . App\Models\Categorie::count() . PHP_EOL;
 
-// 5. Tester le scope actives
-App\Models\Category::actives()->get()->pluck('nom');
+// 5. Lister toutes les catégories
+App\Models\Categorie::all()->pluck('nom');
 ```
 
 **Résultats attendus :**
@@ -129,7 +125,7 @@ App\Models\Category::actives()->get()->pluck('nom');
 ```php
 // Dans Tinker
 // 1. Récupérer une catégorie existante
-$cat = App\Models\Category::first();
+$cat = App\Models\Categorie::first();
 
 // 2. Créer un livre lié à cette catégorie
 $livre = App\Models\Livre::create([
@@ -149,28 +145,28 @@ App\Models\Livre::recherche('Laravel')->get();
 
 // 4. Vérifier la relation
 echo "Livre: " . $livre->titre . PHP_EOL;
-echo "Catégorie: " . $livre->category->nom . PHP_EOL;
+echo "Catégorie: " . $livre->categorie->nom . PHP_EOL;
 ```
 
 ### **🔧 Exercice 2.3 : Relations Bidirectionnelles (20 min)**
 
 ```php
 // Dans Tinker
-// 1. Relation Category -> Livres (hasMany)
-$cat = App\Models\Category::first();
+// 1. Relation Categorie -> Livres (hasMany)
+$cat = App\Models\Categorie::first();
 echo "Catégorie: " . $cat->nom . PHP_EOL;
 echo "Nombre de livres: " . $cat->livres()->count() . PHP_EOL;
 $cat->livres->pluck('titre');
 
-// 2. Relation Livre -> Category (belongsTo)
+// 2. Relation Livre -> Categorie (belongsTo)
 $livre = App\Models\Livre::first();
 echo "Livre: " . $livre->titre . PHP_EOL;
-echo "Catégorie: " . $livre->category->nom . PHP_EOL;
+echo "Catégorie: " . $livre->categorie->nom . PHP_EOL;
 
 // 3. Eager Loading (optimisation)
-$livres = App\Models\Livre::with('category')->get();
+$livres = App\Models\Livre::with('categorie')->get();
 foreach($livres as $livre) {
-    echo $livre->titre . " (" . $livre->category->nom . ")" . PHP_EOL;
+    echo $livre->titre . " (" . $livre->categorie->nom . ")" . PHP_EOL;
 }
 
 // 4. Créer des livres pour une catégorie
@@ -198,9 +194,9 @@ php artisan migrate:fresh --seed
 
 # 3. Vérifier les données créées
 php artisan tinker
->>> "Catégories: " . App\Models\Category::count()
+>>> "Catégories: " . App\Models\Categorie::count()
 >>> "Livres: " . App\Models\Livre::count()
->>> App\Models\Category::all()->pluck('nom')
+>>> App\Models\Categorie::all()->pluck('nom')
 >>> exit
 ```
 
@@ -220,14 +216,14 @@ php artisan db:seed --class=CategorySeeder
 
 # 3. Vérifier
 php artisan tinker
->>> App\Models\Category::all()->pluck('nom', 'couleur')
+>>> App\Models\Categorie::all()->pluck('nom', 'couleur')
 
 # 4. Lancer LivreSeeder (dépend des catégories)
 php artisan db:seed --class=LivreSeeder
 
 # 5. Tester les relations
->>> App\Models\Livre::with('category')->get()->map(function($livre) {
-    return $livre->titre . ' -> ' . $livre->category->nom;
+>>> App\Models\Livre::with('categorie')->get()->map(function($livre) {
+    return $livre->titre . ' -> ' . $livre->categorie->nom;
 });
 ```
 
@@ -238,19 +234,19 @@ php artisan db:seed --class=LivreSeeder
 
 // 1. Statistiques générales
 echo "=== STATISTIQUES BIBLIOTECH ===" . PHP_EOL;
-echo "Catégories: " . App\Models\Category::count() . PHP_EOL;
+echo "Catégories: " . App\Models\Categorie::count() . PHP_EOL;
 echo "Livres: " . App\Models\Livre::count() . PHP_EOL;
 echo "Livres disponibles: " . App\Models\Livre::disponible()->count() . PHP_EOL;
 
 // 2. Répartition par catégorie
 echo PHP_EOL . "=== RÉPARTITION PAR CATÉGORIE ===" . PHP_EOL;
-App\Models\Category::withCount('livres')->get()->each(function($cat) {
+App\Models\Categorie::withCount('livres')->get()->each(function($cat) {
     echo "• " . $cat->nom . ": " . $cat->livres_count . " livre(s)" . PHP_EOL;
 });
 
 // 3. Livres par catégorie détaillés
 echo PHP_EOL . "=== LIVRES PAR CATÉGORIE ===" . PHP_EOL;
-App\Models\Category::with('livres')->get()->each(function($cat) {
+App\Models\Categorie::with('livres')->get()->each(function($cat) {
     echo PHP_EOL . "📚 " . $cat->nom . " (" . $cat->couleur . ")" . PHP_EOL;
     $cat->livres->each(function($livre) {
         echo "  • " . $livre->titre . " - " . $livre->auteur;
@@ -296,23 +292,23 @@ App\Models\Livre::disponible()
 // Dans Tinker
 // 1. Comptage des livres par catégorie
 echo "=== COMPTAGE PAR CATÉGORIE ===" . PHP_EOL;
-App\Models\Category::withCount('livres')->get()->each(function($cat) {
+App\Models\Categorie::withCount('livres')->get()->each(function($cat) {
     echo $cat->nom . ": " . $cat->livres_count . " livres" . PHP_EOL;
 });
 
 // 2. Catégories avec au moins un livre
 echo "=== CATÉGORIES AVEC LIVRES ===" . PHP_EOL;
-App\Models\Category::has('livres')->get()->pluck('nom');
+App\Models\Categorie::has('livres')->get()->pluck('nom');
 
 // 3. Livres avec leurs catégories (Eager Loading)
 echo "=== LIVRES + CATÉGORIES ===" . PHP_EOL;
-App\Models\Livre::with('category')->get()->each(function($livre) {
-    echo $livre->titre . " [" . $livre->category->nom . "]" . PHP_EOL;
+App\Models\Livre::with('categorie')->get()->each(function($livre) {
+    echo $livre->titre . " [" . $livre->categorie->nom . "]" . PHP_EOL;
 });
 
 // 4. Catégories ordonnées par nombre de livres
 echo "=== TOP CATÉGORIES ===" . PHP_EOL;
-App\Models\Category::withCount('livres')
+App\Models\Categorie::withCount('livres')
     ->orderBy('livres_count', 'desc')
     ->get()
     ->pluck('nom', 'livres_count');
@@ -324,7 +320,7 @@ App\Models\Category::withCount('livres')
 // Dans Tinker - Comparaison Eloquent vs SQL brut
 
 // 1. Eloquent ORM
-$livres_orm = App\Models\Livre::with('category')
+$livres_orm = App\Models\Livre::with('categorie')
     ->where('disponible', true)
     ->get();
 echo "Eloquent: " . $livres_orm->count() . " livres" . PHP_EOL;
@@ -347,7 +343,7 @@ echo "SQL brut: " . count($livres_raw) . " livres" . PHP_EOL;
 
 // 4. Analyser les requêtes générées
 DB::enableQueryLog();
-App\Models\Livre::with('category')->disponible()->get();
+App\Models\Livre::with('categorie')->disponible()->get();
 collect(DB::getQueryLog())->pluck('query');
 DB::disableQueryLog();
 ```
@@ -363,7 +359,7 @@ DB::disableQueryLog();
 echo "=== TESTS D'INTÉGRITÉ ===" . PHP_EOL;
 
 // Test 1: Toutes les catégories ont un slug
-$cats_sans_slug = App\Models\Category::whereNull('slug')->count();
+$cats_sans_slug = App\Models\Categorie::whereNull('slug')->count();
 echo "Catégories sans slug: " . $cats_sans_slug . " (doit être 0)" . PHP_EOL;
 
 // Test 2: Tous les livres ont une catégorie
@@ -371,7 +367,7 @@ $livres_sans_cat = App\Models\Livre::whereNull('category_id')->count();
 echo "Livres sans catégorie: " . $livres_sans_cat . " (doit être 0)" . PHP_EOL;
 
 // Test 3: Toutes les relations fonctionnent
-$total_relations = App\Models\Livre::with('category')->get()
+$total_relations = App\Models\Livre::with('categorie')->get()
     ->filter(function($livre) {
         return $livre->category !== null;
     })->count();
@@ -380,7 +376,7 @@ echo "Relations fonctionnelles: " . $total_relations . "/" . App\Models\Livre::c
 // Test 4: Contraintes de validation
 try {
     // Essayer de créer sans données requises
-    App\Models\Category::create([]);
+    App\Models\Categorie::create([]);
 } catch (Exception $e) {
     echo "✅ Contrainte respectée: " . substr($e->getMessage(), 0, 50) . "..." . PHP_EOL;
 }
@@ -399,7 +395,7 @@ DB::enableQueryLog();
 $start = microtime(true);
 $livres = App\Models\Livre::all();
 foreach($livres as $livre) {
-    $cat_nom = $livre->category->nom; // Une requête par livre !
+    $cat_nom = $livre->categorie->nom; // Une requête par livre !
 }
 $time_n1 = microtime(true) - $start;
 $queries_n1 = count(DB::getQueryLog());
@@ -408,9 +404,9 @@ DB::flushQueryLog();
 
 // Test 2: Avec Eager Loading (optimisé)
 $start = microtime(true);
-$livres = App\Models\Livre::with('category')->get();
+$livres = App\Models\Livre::with('categorie')->get();
 foreach($livres as $livre) {
-    $cat_nom = $livre->category->nom; // Aucune requête supplémentaire
+    $cat_nom = $livre->categorie->nom; // Aucune requête supplémentaire
 }
 $time_eager = microtime(true) - $start;
 $queries_eager = count(DB::getQueryLog());
@@ -430,16 +426,16 @@ php artisan schema:dump
 # 2. Créer un backup des données
 php artisan tinker --execute="
     file_put_contents('database/backup_categories.json', 
-        App\Models\Category::all()->toJson(JSON_PRETTY_PRINT));
+        App\Models\Categorie::all()->toJson(JSON_PRETTY_PRINT));
     file_put_contents('database/backup_livres.json', 
-        App\Models\Livre::with('category')->get()->toJson(JSON_PRETTY_PRINT));
+        App\Models\Livre::with('categorie')->get()->toJson(JSON_PRETTY_PRINT));
     echo 'Backup créé' . PHP_EOL;
 "
 
 # 3. Statistiques finales
 php artisan tinker --execute="
     echo '=== BIBLIOTECH - STATISTIQUES FINALES ===' . PHP_EOL;
-    echo 'Catégories: ' . App\Models\Category::count() . PHP_EOL;
+    echo 'Catégories: ' . App\Models\Categorie::count() . PHP_EOL;
     echo 'Livres: ' . App\Models\Livre::count() . PHP_EOL;
     echo 'Relations: ' . App\Models\Livre::whereNotNull('category_id')->count() . PHP_EOL;
     echo 'Disponibles: ' . App\Models\Livre::disponible()->count() . PHP_EOL;

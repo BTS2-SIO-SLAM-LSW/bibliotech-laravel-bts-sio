@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Livre;
-use App\Models\Category;
+use App\Models\Categorie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,86 +14,86 @@ class LivreSeeder extends Seeder
      */
     public function run(): void
     {
-        // Récupération des catégories pour les relations
-        $laravel = Category::where('slug', 'laravel')->first();
-        $php = Category::where('slug', 'php')->first();
-        $database = Category::where('slug', 'database')->first();
-        $frontend = Category::where('slug', 'frontend')->first();
-        $devops = Category::where('slug', 'devops')->first();
-        $architecture = Category::where('slug', 'architecture')->first();
+        // Récupération des catégories pour les relations (en utilisant celles existantes)
+        $roman = Categorie::where('slug', 'roman')->first();
+        $informatique = Categorie::where('slug', 'informatique')->first();
+        $histoire = Categorie::where('slug', 'histoire')->first();
+        $scienceFiction = Categorie::where('slug', 'science-fiction')->first();
+        $biographie = Categorie::where('slug', 'biographie')->first();
+        $fantastique = Categorie::where('slug', 'fantastique')->first();
 
         $livres = [
             [
-                'titre' => 'Laravel pour Débutants',
-                'auteur' => 'John Smith',
-                'annee' => 2024,
-                'nb_pages' => 320,
+                'titre' => 'Les Misérables',
+                'auteur' => 'Victor Hugo',
+                'annee' => 1862,
+                'nb_pages' => 1200,
                 'isbn' => '978-2-1234-5678-9',
-                'resume' => 'Guide complet pour apprendre Laravel étape par étape. Ce livre couvre tous les aspects fondamentaux du framework PHP le plus populaire.',
-                'couverture' => 'laravel.jpg',
+                'resume' => 'Un chef-d\'œuvre de la littérature française qui suit la vie de Jean Valjean.',
+                'couverture' => 'miserables.jpg',
                 'disponible' => true,
-                'categorie' => 'Laravel', // Ancien champ pour compatibilité
-                'category_id' => $laravel?->id,
+                'categorie' => 'Roman',
+                'categorie_id' => $roman?->id,
             ],
             [
-                'titre' => 'Docker en Pratique',
+                'titre' => 'Guide Laravel pour Développeurs',
                 'auteur' => 'Marie Dubois',
                 'annee' => 2023,
                 'nb_pages' => 280,
                 'isbn' => '978-2-1234-5679-6',
-                'resume' => 'Maîtriser la containerisation avec Docker. Apprenez à créer, déployer et gérer des applications containerisées.',
-                'couverture' => 'docker.jpg',
+                'resume' => 'Maîtriser le framework Laravel avec des exemples pratiques.',
+                'couverture' => 'laravel.jpg',
                 'disponible' => true,
-                'categorie' => 'DevOps',
-                'category_id' => $devops?->id,
+                'categorie' => 'Informatique',
+                'categorie_id' => $informatique?->id,
             ],
             [
-                'titre' => 'MVC Expliqué Simplement',
+                'titre' => 'Histoire de France',
                 'auteur' => 'Pierre Martin',
                 'annee' => 2024,
                 'nb_pages' => 195,
                 'isbn' => '978-2-1234-5680-2',
-                'resume' => 'Comprendre l\'architecture MVC avec des exemples concrets. Pattern architectural incontournable du développement moderne.',
-                'couverture' => 'mvc.jpg',
+                'resume' => 'Un voyage à travers l\'histoire de France des origines à nos jours.',
+                'couverture' => 'histoire.jpg',
                 'disponible' => false,
-                'categorie' => 'Architecture',
-                'category_id' => $architecture?->id,
+                'categorie' => 'Histoire',
+                'categorie_id' => $histoire?->id,
             ],
             [
-                'titre' => 'PHP 8 - Les Nouveautés',
-                'auteur' => 'Lucas Bernard',
-                'annee' => 2024,
+                'titre' => 'Dune',
+                'auteur' => 'Frank Herbert',
+                'annee' => 1965,
                 'nb_pages' => 245,
                 'isbn' => '978-2-1234-5682-6',
-                'resume' => 'Découvrez toutes les nouveautés de PHP 8 : types union, attributs, match expression et bien plus.',
-                'couverture' => 'php8.jpg',
+                'resume' => 'Un classique de la science-fiction dans l\'univers d\'Arrakis.',
+                'couverture' => 'dune.jpg',
                 'disponible' => true,
-                'categorie' => 'PHP',
-                'category_id' => $php?->id,
+                'categorie' => 'Science-Fiction',
+                'categorie_id' => $scienceFiction?->id,
             ],
             [
-                'titre' => 'SQLite pour les Applications Modernes',
-                'auteur' => 'Sophie Moreau',
-                'annee' => 2023,
+                'titre' => 'Steve Jobs',
+                'auteur' => 'Walter Isaacson',
+                'annee' => 2011,
                 'nb_pages' => 350,
                 'isbn' => '978-2-1234-5681-9',
-                'resume' => 'Guide complet de SQLite pour le développement d\'applications. Performance, sécurité et bonnes pratiques.',
-                'couverture' => 'sqlite.jpg',
+                'resume' => 'La biographie officielle du co-fondateur d\'Apple.',
+                'couverture' => 'jobs.jpg',
                 'disponible' => true,
-                'categorie' => 'Base de Données',
-                'category_id' => $database?->id,
+                'categorie' => 'Biographie',
+                'categorie_id' => $biographie?->id,
             ],
             [
-                'titre' => 'Bootstrap 5 et CSS Moderne',
-                'auteur' => 'Emma Wilson',
-                'annee' => 2024,
+                'titre' => 'Le Seigneur des Anneaux',
+                'auteur' => 'J.R.R. Tolkien',
+                'annee' => 1954,
                 'nb_pages' => 290,
                 'isbn' => '978-2-1234-5683-3',
-                'resume' => 'Créer des interfaces modernes avec Bootstrap 5. Composants, grille responsive et personnalisation.',
-                'couverture' => 'bootstrap5.jpg',
+                'resume' => 'L\'épopée fantasy la plus célèbre de tous les temps.',
+                'couverture' => 'lotr.jpg',
                 'disponible' => true,
-                'categorie' => 'Frontend',
-                'category_id' => $frontend?->id,
+                'categorie' => 'Fantastique',
+                'categorie_id' => $fantastique?->id,
             ]
         ];
 

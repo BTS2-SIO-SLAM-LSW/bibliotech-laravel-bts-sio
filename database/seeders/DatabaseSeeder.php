@@ -18,11 +18,5 @@ class DatabaseSeeder extends Seeder
             CategorieSeeder::class,  // Créer d'abord les catégories
             LivreSeeder::class,      // Puis les livres avec relations
         ]);
-
-        // Utilisateur de test français
-        User::factory()->create([
-            'name' => 'Administrateur BiblioTech',
-            'email' => 'admin@bibliotech.fr',
-        ]);
     }
 }

@@ -8,16 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'categories';
-    
+
     protected $fillable = [
         'nom',
         'description',
         'slug',
-        'couleur'
+        'couleur',
+        'icone',
+        'active'
     ];
-    
+
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
     /**
      * Une catégorie peut avoir plusieurs livres
      */
@@ -25,16 +31,24 @@ class Categorie extends Model
     {
         return $this->hasMany(Livre::class, 'categorie_id');
     }
-    
+
     /**
      * Scope pour rechercher par nom
      */
     public function scopeRecherche($query, $terme)
     {
         return $query->where('nom', 'like', '%' . $terme . '%')
-                    ->orWhere('description', 'like', '%' . $terme . '%');
+            ->orWhere('description', 'like', '%' . $terme . '%');
     }
-    
+
+    /**
+     * Scope pour les catégories actives
+     */
+    public function scopeActives($query)
+    {
+        return $query->where('active', true);
+    }
+
     /**
      * Scope pour trouver par slug
      */
@@ -42,7 +56,7 @@ class Categorie extends Model
     {
         return $query->where('slug', $slug);
     }
-    
+
     /**
      * Accesseur pour l'URL de la catégorie
      */
