@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Script de vérification pour la Séance 02
  * À exécuter avec : php artisan tinker < test_seance_02.php

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('couverture')->nullable();
             $table->boolean('disponible')->default(true);
             $table->timestamps();
-            
+
             // Index pour améliorer les recherches
             $table->index(['titre', 'auteur']);
             $table->index('disponible');

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Livre extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'livres';
-    
+
     protected $fillable = [
         'titre',
         'auteur',
@@ -22,13 +22,13 @@ class Livre extends Model
         'disponible',
         'categorie_id'
     ];
-    
+
     protected $casts = [
         'disponible' => 'boolean',
         'annee' => 'integer',
         'nb_pages' => 'integer'
     ];
-    
+
     /**
      * Scope pour les livres disponibles
      */
@@ -36,14 +36,14 @@ class Livre extends Model
     {
         return $query->where('disponible', true);
     }
-    
+
     /**
      * Scope pour rechercher par titre ou auteur
      */
     public function scopeRecherche($query, $terme)
     {
         return $query->where('titre', 'like', '%' . $terme . '%')
-                    ->orWhere('auteur', 'like', '%' . $terme . '%');
+            ->orWhere('auteur', 'like', '%' . $terme . '%');
     }
 
     /**
