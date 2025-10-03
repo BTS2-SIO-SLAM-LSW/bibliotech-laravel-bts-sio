@@ -4,7 +4,13 @@
 ![PHP](https://img.shields.io/badge/PHP-8.3+-blue?style=flat-square&logo=php)
 ![SQLite](https://img.shields.io/badge/SQLite-3-blue?style=flat-square&logo=sqlite)
 ![GitHub](https://img.shields.io/badge/GitHub-Codespaces-success?style=flat-square&logo=github)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=flat-square&logo=bootstrap)
+![Bootstrap](https://img.shields.io/badge/Bootstra## 📖 **Documentation par Séance**
+
+| Séance | Documentation | Exercices | Code Source | Status |
+|---------|---------------|-----------|-------------|---------|
+| **Séance 1** | [📖 Guide S1](docs/seance-01/00-README.md) | [💪 Exercices S1](docs/seance-01/05-EXERCICES-PRATIQUES.md) | [📁 Code S1](docs/seance-01/) | ✅ **Terminé** |
+| **Séance 2** | [📊 Guide S2](docs/seance-02/00-README.md) | [💻 Exercices S2](docs/seance-02/05-EXERCICES-PRATIQUES.md) | [🗄️ SQLite & ORM](docs/seance-02/) | ✅ **Terminé** |
+| **Séance 3** | [🎭 Guide S3](docs/seance-03/00-README.md) | [💪 Exercices S3](docs/seance-03/05-TP-PRATIQUE-EXERCICES.md) | [🎛️ Controllers & Views](docs/seance-03/) | ✅ **Terminé** |ple?style=flat-square&logo=bootstrap)
 
 ## 🎯 **À propos du Projet**
 
@@ -459,16 +465,15 @@ tail storage/logs/laravel.log
 
 ### **Séances Suivantes**
 - **Séance 2** : ✅ **SQLite**, Eloquent ORM, Relations, CI/CD
-- **Séance 3** : CRUD complet, Formulaires, Validation
-- **Séance 3** : CRUD complet, formulaires de création/édition
-- **Séance 4** : Authentification Laravel, système de rôles
-- **Séance 5** : Relations entre entités, API REST
-- **Séance 6** : Recherche avancée, cache et performance
-- **Séance 7** : Technologies avancées (WebSockets, IA)
-- **Séance 8** : Déploiement, monitoring, CI/CD
+- **Séance 3** : ✅ **Contrôleurs Resource**, Vues Blade Avancées, Validation
+- **Séance 4** : 🔄 Authentification Laravel, système de rôles
+- **Séance 5** : 🔄 Relations entre entités, API REST
+- **Séance 6** : 🔄 Recherche avancée, cache et performance
+- **Séance 7** : 🔄 Technologies avancées (WebSockets, IA)
+- **Séance 8** : 🔄 Déploiement, monitoring, CI/CD
 
 ### **Fonctionnalités Planifiées**
-- 🔄 **CRUD Complet** : Création, modification, suppression de livres
+- ✅ **CRUD Complet** : Création, modification, suppression de livres
 - 🔄 **Authentification** : Connexion utilisateurs et bibliothécaires
 - 🔄 **Système d'Emprunt** : Gestion des emprunts et retours
 - 🔄 **Réservations** : Système de réservation en ligne
@@ -476,6 +481,55 @@ tail storage/logs/laravel.log
 - 🔄 **Notifications** : Alertes par email et WebSocket
 - 🔄 **API REST** : Accès programmatique aux données
 - 🔄 **Interface Admin** : Tableau de bord pour bibliothécaires
+
+---
+
+## 📚 **Progression Pédagogique Détaillée**
+
+### **🚀 Séance 1 - Fondations Laravel & MVC**
+**Objectif :** Maîtriser les concepts de base de Laravel et l'architecture MVC
+
+**Compétences acquises :**
+- ✅ Architecture MVC et flux de données
+- ✅ Système de routes Laravel 
+- ✅ Contrôleurs de base
+- ✅ Templates Blade et héritage
+- ✅ Environnement Docker/Codespaces
+
+**Documents :** [📖 Guide Complet S1](docs/seance-01/00-README.md)
+
+### **📊 Séance 2 - Base de Données SQLite & Eloquent**
+**Objectif :** Intégrer une base de données et maîtriser l'ORM Eloquent
+
+**Compétences acquises :**
+- ✅ Migrations et Schema Builder
+- ✅ Modèles Eloquent et relations
+- ✅ Seeders et données de test
+- ✅ Requêtes Eloquent avancées
+- ✅ Pipeline CI/CD avec GitHub Actions
+
+**Documents :** [📊 Guide Complet S2](docs/seance-02/00-README.md)
+
+### **🎭 Séance 3 - Contrôleurs Resource & Vues Avancées** 
+**Objectif :** Développer une interface utilisateur complète avec CRUD
+
+**Compétences acquises :**
+- ✅ Contrôleurs Resource (7 actions CRUD)
+- ✅ Système de vues Blade sophistiqué
+- ✅ Validation Laravel robuste
+- ✅ Route Model Binding automatique
+- ✅ Messages Flash et feedback utilisateur
+- ✅ Interface responsive Bootstrap
+- ✅ Composants Blade réutilisables
+
+**Documents :** [🎭 Guide Complet S3](docs/seance-03/00-README.md)
+
+### **🔮 Séances Futures (Planifiées)**
+- **Séance 4** : 🔐 Authentification et autorisations
+- **Séance 5** : 🌐 API REST et AJAX
+- **Séance 6** : 🔍 Recherche avancée et performance
+- **Séance 7** : 🚀 Technologies avancées (WebSockets, IA)
+- **Séance 8** : ☁️ Déploiement et monitoring
 
 ---
 
