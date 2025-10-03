@@ -68,27 +68,30 @@
 
 ---
 
-### **✏️ SÉANCE 3 : CRUD + Formulaires (3h)**
-**Objectif** : Permettre d'ajouter, modifier, supprimer des livres
+### **🎭 SÉANCE 3 : Contrôleurs & Vues Avancées (3h)**
+**Objectif** : Maîtriser les contrôleurs resource et développer un système de vues sophistiqué
 
 #### **Contenu**
-- **CRUD** : Create, Read, Update, Delete
-- **Formulaires HTML** : Saisie de données
-- **Validation** : Vérifier les données saisies
-- **Messages flash** : Retours utilisateur
-- **Transactions SQLite** : Intégrité des données
+- **Contrôleurs Resource** : 7 actions CRUD automatiques
+- **Route Model Binding** : Injection automatique des modèles
+- **Vues Blade Avancées** : Composants réutilisables et layouts
+- **Validation Laravel** : Règles robustes et messages personnalisés
+- **Interface Responsive** : Bootstrap et UX moderne
+- **Messages Flash** : Feedback utilisateur complet
 
 #### **Exercices**
-- Formulaire d'ajout de livre
-- Page modification livre existant
-- Suppression avec confirmation
-- Validation des champs obligatoires
+- Générer contrôleur resource complet
+- Créer toutes les vues CRUD (index, show, create, edit)
+- Implémenter validation avec messages d'erreur
+- Développer interface responsive
+- Ajouter composants Blade réutilisables
 
 #### **Validation**
-- Toutes opérations CRUD fonctionnelles
-- Validation côté serveur active
-- Messages d'erreur/succès affichés
-- Données persistées dans SQLite
+- Contrôleur resource avec 7 méthodes fonctionnelles
+- Interface utilisateur complète et moderne
+- Validation côté serveur robuste
+- Navigation fluide entre toutes les pages
+- Messages flash appropriés pour chaque action
 
 ---
 
