@@ -10,8 +10,9 @@ La séance 03 se concentre sur l'approfondissement de la couche **Contrôleur** 
 
 **Progression par rapport aux séances précédentes :**
 - **Séance 01** : Routes simples → Contrôleurs basiques → Vues statiques
-- **Séance 02** : Modèles Eloquent → Base de données SQLite → Relations
-- **Séance 03** : **Contrôleurs resource → Vues dynamiques → Interface complète** ← Nous sommes ici
+- **Séance 02** : Modèles Eloquent → Base de données SQLite → Relations simples (Livre→Catégorie)
+- **Séance 03** : **Contrôleurs resource → Vues dynamiques → CRUD complet** ← Nous sommes ici
+- **Séance 04** : Relations avancées → Many-to-Many → Auteurs multiples
 
 ---
 

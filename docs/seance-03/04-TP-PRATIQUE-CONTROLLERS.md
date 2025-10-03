@@ -149,7 +149,7 @@ class LivreController extends Controller
     {
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
-            'auteur' => 'required|string|max:255',
+            'auteur' => 'required|string|max:255', // 📝 Note: En séance 4, nous transformerons ceci en relation vers un modèle Auteur
             'isbn' => 'required|string|unique:livres|size:13',
             'categorie_id' => 'required|exists:categories,id',
             'resume' => 'nullable|string|max:1000',
@@ -189,7 +189,7 @@ class LivreController extends Controller
     {
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
-            'auteur' => 'required|string|max:255',
+            'auteur' => 'required|string|max:255', // 📝 Note: En séance 4, nous transformerons ceci en relation vers un modèle Auteur
             'isbn' => 'required|string|size:13|unique:livres,isbn,' . $livre->id,
             'categorie_id' => 'required|exists:categories,id',
             'resume' => 'nullable|string|max:1000',

@@ -13,8 +13,9 @@
 - ✅ **Implémenter des fonctionnalités** avancées (recherche, filtres, export)
 - ✅ **Maîtriser la validation** complexe et personnalisée
 
-**⏱️ Durée totale :** 60 minutes (12 min par module)
+**⏱️ Durée totale :** 75 minutes (15 min par module)
 **🎓 Niveau :** Autonome (solutions disponibles séparément)
+**📝 Recommandation :** Choisir 3-4 modules selon le niveau de la classe
 
 ---
 
@@ -23,27 +24,27 @@
 ```
 🚀 EXERCICES PROGRESSIFS
 │
-├── 📊 Module 1: Recherche et Filtres Avancés (12 min)
+├── 📊 Module 1: Recherche et Filtres Avancés (15 min)
 │   ├── Recherche multi-critères
 │   ├── Filtres par date et statut
 │   └── URL avec paramètres persistants
 │
-├── 🎨 Module 2: Composants Blade Avancés (12 min)
+├── 🎨 Module 2: Composants Blade Avancés (15 min)
 │   ├── Composant livre-card personnalisable
 │   ├── Composant pagination custom
 │   └── Composant formulaire réutilisable
 │
-├── ✅ Module 3: Validation Personnalisée (12 min)
+├── ✅ Module 3: Validation Personnalisée (15 min)
 │   ├── Règles de validation custom
 │   ├── Form Request classes
 │   └── Messages d'erreur personnalisés
 │
-├── 📱 Module 4: Interface Mobile & UX (12 min)
+├── 📱 Module 4: Interface Mobile & UX (15 min)
 │   ├── Menu mobile optimisé
 │   ├── Modales et notifications
 │   └── Loading states et feedback
 │
-└── ⚡ Module 5: Performance & Export (12 min)
+└── ⚡ Module 5: Performance & Export (15 min)
     ├── Optimisation des requêtes
     ├── Export PDF/Excel
     └── Cache et mémorisation

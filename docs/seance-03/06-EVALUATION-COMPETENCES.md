@@ -44,6 +44,8 @@ Vous devez créer un système de gestion des **auteurs** pour l'application Bibl
 - **Site web** (optionnel, URL valide)
 - **Actif** (boolean, défaut true)
 
+> **📝 Note pédagogique :** Cette évaluation prépare la séance 4 en introduisant le concept de modèle Auteur distinct. Actuellement, les livres utilisent un champ `auteur` string que nous transformerons en relation en séance 4.
+
 ---
 
 ## 🏗️ Partie 1 : Structure et Modèle (4 points)
