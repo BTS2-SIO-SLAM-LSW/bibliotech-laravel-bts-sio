@@ -442,28 +442,13 @@ php artisan optimize:clear
 tail storage/logs/laravel.log
 ```
 
----
 
-## 📖 **Documentation par Séance**
 
-| Séance | Documentation | Exercices | Code Source | Status |
-|---------|---------------|-----------|-------------|---------|
-| **Séance 1** | [📖 Guide S1](docs/seance-01/00-README.md) | [💪 Exercices S1](docs/seance-01/05-EXERCICES-PRATIQUES.md) | [📁 Code S1](docs/seance-01/) | ✅ **Terminé** |
-| **Séance 2** | 🔄 Base de données | 🔄 Migrations et Modèles | 🔄 PostgreSQL | 🔄 Futur |
-| **Séance 3** | 🔄 CRUD et Formulaires | 🔄 Validation | 🔄 Sessions | 🔄 Futur |
+
 
 ---
 
 ## 🚀 **Évolutions Futures**
-
-### **Séances Suivantes**
-- **Séance 2** : Migration vers PostgreSQL, modèles Eloquent
-- **Séance 3** : CRUD complet, formulaires de création/édition
-- **Séance 4** : Authentification Laravel, système de rôles
-- **Séance 5** : Relations entre entités, API REST
-- **Séance 6** : Recherche avancée, cache et performance
-- **Séance 7** : Technologies avancées (WebSockets, IA)
-- **Séance 8** : Déploiement, monitoring, CI/CD
 
 ### **Fonctionnalités Planifiées**
 - 🔄 **CRUD Complet** : Création, modification, suppression de livres
