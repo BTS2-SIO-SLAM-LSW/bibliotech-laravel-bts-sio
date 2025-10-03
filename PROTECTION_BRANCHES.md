@@ -54,19 +54,6 @@ git checkout seance-02-database-sqlite  # Pour travailler sur séance 2
 git checkout main                       # Pour revenir à séance 1
 ```
 
-## 🚨 **EN CAS D'ERREUR**
-
-Si vous avez accidentellement fusionné ou poussé vers la mauvaise branche :
-
-1. **NE PAS PANIQUER** 🙅‍♂️
-2. **ARRÊTER IMMÉDIATEMENT** le travail
-3. **CONTACTER** le responsable technique
-4. **NE PAS** essayer de corriger seul
-
-## 📞 **CONTACTS D'URGENCE**
-- GitHub : Créer une Issue avec le tag `urgent`
-- Email : support@formation-laravel.fr
-- Discord : #urgence-technique
 
 ---
 

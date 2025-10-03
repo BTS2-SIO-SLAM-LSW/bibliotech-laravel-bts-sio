@@ -4,7 +4,11 @@
 ![PHP](https://img.shields.io/badge/PHP-8.3+-blue?style=flat-square&logo=php)
 ![SQLite](https://img.shields.io/badge/SQLite-3-blue?style=flat-square&logo=sqlite)
 ![GitHub](https://img.shields.io/badge/GitHub-Codespaces-success?style=flat-square&logo=github)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=flat-square&logo=bootstrap)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-| Séance | Documentation | Exercices | Code Source | Status |
+|---------|---------------|-----------|-------------|---------|
+| **Séance 1** | [📖 Guide S1](docs/seance-01/00-README.md) | [💪 Exercices S1](docs/seance-01/05-EXERCICES-PRATIQUES.md) | [📁 Code S1](docs/seance-01/) | ✅ **Terminé** |
+| **Séance 2** | [📊 Guide S2](docs/seance-02/00-README.md) | [🗄️ Exercices S2](docs/seance-02/05-TP-PRATIQUE-EXERCICES.md) | [🏗️ SQLite & ORM](docs/seance-02/) | **🔄 En cours** |
+| **Séance 3** | 🔄 CRUD et Formulaires | 🔄 Validation | 🔄 Sessions | 🔄 Futur |ple?style=flat-square&logo=bootstrap)
 
 ## 🎯 **À propos du Projet**
 
@@ -179,24 +183,38 @@ graph TB
     CSS --> ICONS
 ```
 
-### **🗄️ Modèle de Données Actuel (SQLite)**
+### **🗄️ Modèle de Données Actuel (Séance 2)**
 
 ```mermaid
 erDiagram
-    LIVRE {
+    CATEGORIES {
         int id PK "ID unique"
-        string titre "Titre du livre"
-        string auteur "Auteur principal"
-        string description "Description complète"
-        string category "Catégorie (laravel, docker, php, mvc)"
-        string isbn "Numéro ISBN"
-        int pages "Nombre de pages"
-        boolean disponible "Disponibilité"
+        string nom "Nom de la catégorie"
+        text description "Description"
+        string slug UK "Slug unique"
+        string couleur "Couleur hex (#6B7280)"
+        string icone "Icône Font Awesome"
+        boolean active "Catégorie active"
         datetime created_at "Date de création"
         datetime updated_at "Date de modification"
     }
     
-    UTILISATEUR {
+    LIVRES {
+        int id PK "ID unique"
+        string titre "Titre du livre"
+        string auteur "Auteur principal"
+        year annee "Année de publication"
+        int nb_pages "Nombre de pages"
+        string isbn UK "Numéro ISBN unique"
+        text resume "Résumé du livre"
+        string couverture "URL de la couverture"
+        boolean disponible "Disponibilité"
+        int categorie_id FK "Clé étrangère catégorie"
+        datetime created_at "Date de création"
+        datetime updated_at "Date de modification"
+    }
+    
+    UTILISATEURS {
         int id PK "ID unique"
         string nom "Nom complet"
         string email UK "Email unique"
@@ -206,6 +224,89 @@ erDiagram
         datetime created_at "Date de création"
         datetime updated_at "Date de modification"
     }
+    
+    CATEGORIES ||--o{ LIVRES : "a plusieurs"
+```
+
+### **📋 Migrations Implémentées (Séance 2)**
+
+| Migration | Description | Champs Principaux |
+|-----------|-------------|-------------------|
+| `create_categories_table` | Création table catégories | `nom`, `description`, `slug`, `couleur` |
+| `create_livres_table` | Création table livres | `titre`, `auteur`, `isbn`, `nb_pages`, `resume` |
+| `add_categorie_id_to_livres_table` | Relation livre → catégorie | `categorie_id` (FK) |
+| `add_icone_and_active_to_categories_table` | Améliorations catégories | `icone`, `active` |
+
+### **🏗️ Modèles Eloquent avec Relations**
+
+```php
+// Modèle Categorie (app/Models/Categorie.php)
+class Categorie extends Model
+{
+    protected $fillable = ['nom', 'description', 'slug', 'couleur', 'icone', 'active'];
+    
+    // Relation : Une catégorie a plusieurs livres
+    public function livres()
+    {
+        return $this->hasMany(Livre::class, 'categorie_id');
+    }
+}
+
+// Modèle Livre (app/Models/Livre.php)  
+class Livre extends Model
+{
+    protected $fillable = ['titre', 'auteur', 'isbn', 'categorie_id'];
+    
+    // Relation : Un livre appartient à une catégorie
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+}
+```
+
+### **🌱 Seeders de Données (Séance 2)**
+
+| Seeder | Description | Données Créées |
+|--------|-------------|----------------|
+| `CategorieSeeder` | Catégories prédéfinies | Roman, Science-Fiction, Informatique, etc. |
+| `LivreSeeder` | Livres de démonstration | Livres liés aux catégories avec relations |
+| `DatabaseSeeder` | Orchestrateur principal | Exécute tous les seeders dans l'ordre |
+
+**Utilisation :**
+```bash
+# Exécuter tous les seeders
+php artisan db:seed
+
+# Exécuter un seeder spécifique
+php artisan db:seed --class=CategorieSeeder
+
+# Recréer la base avec les données de test
+php artisan migrate:fresh --seed
+```
+
+### **🧪 Tests et Vérification (Séance 2)**
+
+Un script de test est fourni pour vérifier le bon fonctionnement des fonctionnalités de la séance 2 :
+
+```bash
+# Exécuter le script de test via Tinker
+php artisan tinker < test_seance_02.php
+```
+
+**Le script vérifie :**
+- ✅ **Comptage des données** : Catégories et livres créés
+- ✅ **Relations Eloquent** : Liaisons catégorie ↔ livres 
+- ✅ **Scopes de recherche** : Méthodes de recherche personnalisées
+- ✅ **Contrôleurs** : Préparation pour utilisation d'Eloquent
+
+**Exemple de sortie attendue :**
+```
+📊 Catégories : 8
+📊 Livres : 25
+🔗 Relations fonctionnelles
+🔍 Recherches opérationnelles
+✅ TOUS LES TESTS PASSENT !
 ```
 
 ### **📈 Relations Futures (Séances Avancées)**
@@ -229,7 +330,7 @@ erDiagram
 | 🎓 Séance | 📚 Concepts Clés | 🛠️ Technologies | 🎯 Cas d'Utilisation | ✅ Status |
 |-----------|------------------|------------------|----------------------|-----------|
 | **S1** | MVC, Routes, Blade | Laravel, SQLite | Consultation catalogue, Recherche | **✅ Terminé** |
-| **S2** | Base de données, Migrations | PostgreSQL, Eloquent ORM | Gestion des données, Seeders | 🔄 Futur |
+| **S2** | Base de données, Migrations | SQLite, Eloquent ORM | Gestion des données, Seeders, Relations | **🔄 En cours** |
 | **S3** | CRUD, Formulaires | Validation, Sessions, Flash Messages | Inscription, Profil utilisateur | 🔄 Futur |
 | **S4** | Authentification, Sécurité | Laravel Auth, Middleware | Connexion, Rôles, Permissions | 🔄 Futur |
 | **S5** | Relations, APIs | Relations Eloquent, API REST | Emprunts, Réservations, Relations | 🔄 Futur |
@@ -323,14 +424,18 @@ bibliotech-laravel/
 - **spatie/laravel-permission** : Gestion des rôles (Séance 4)
 - **barryvdh/laravel-debugbar** : Debug en développement
 
-### **🔧 Fonctionnalités Actuelles**
+### **🔧 Fonctionnalités Actuelles (Séance 2)**
 - ✅ **Architecture MVC** complète
 - ✅ **Routes françaises** (`/livres`, `/livre/{id}`)
 - ✅ **Contrôleurs français** avec données statiques
 - ✅ **Vues Blade** localisées avec Bootstrap
 - ✅ **Illustrations CSS** pour les couvertures de livres
-- ✅ **Base SQLite** configurée et migrée
+- ✅ **Base SQLite** avec migrations complètes
+- ✅ **Modèles Eloquent** avec relations (Livre ↔ Catégorie)
+- ✅ **Seeders** pour données de test
+- ✅ **Relations One-to-Many** (Catégorie → Livres)
 - ✅ **Scripts d'installation** automatisés
+- ✅ **Pipeline CI/CD** avec GitHub Actions
 
 ### **🎨 Système d'Illustrations CSS**
 - **Laravel** : Dégradé orange (#FF6B35 → #F7931E) avec icône
@@ -346,7 +451,7 @@ bibliotech-laravel/
 
 ---
 
-## 🎓 **Apprentissage - Séance 1 Complétée**
+## 🎓 **Apprentissage - Séances 1 & 2 Complétées**
 
 ### **Concepts Laravel Maîtrisés**
 - [x] **Routage** : Routes nommées, paramètres d'URL
@@ -354,25 +459,42 @@ bibliotech-laravel/
 - [x] **Vues Blade** : Templates, layouts, composants
 - [x] **Architecture MVC** : Séparation des responsabilités
 - [x] **Configuration** : Environnement, base de données SQLite
+- [x] **Migrations** : Création et modification de structure
+- [x] **Modèles Eloquent** : ORM et mapping objet-relationnel
+- [x] **Relations** : One-to-Many avec clés étrangères
+- [x] **Seeders** : Peuplement automatique de données
+- [x] **CI/CD** : Pipeline GitHub Actions
 
-### **Code Exemple - Contrôleur Livre**
+### **Code Exemple - Modèles et Relations (Séance 2)**
 ```php
-class LivreController extends Controller
+// Modèle Livre avec relation
+class Livre extends Model
 {
-    public function index()
+    protected $fillable = ['titre', 'auteur', 'isbn', 'categorie_id'];
+    
+    // Un livre appartient à une catégorie
+    public function categorie()
     {
-        $livres = $this->obtenirLivres();
-        $totalLivres = count($livres);
-        
-        return view('livres.index', compact('livres', 'totalLivres'));
+        return $this->belongsTo(Categorie::class);
     }
     
-    public function show($id)
+    // Scope pour recherche
+    public function scopeRecherche($query, $terme)
     {
-        $livre = $this->obtenirLivreParId($id);
-        $livresSimilaires = $this->obtenirLivresSimilaires($livre['category']);
-        
-        return view('livres.show', compact('livre', 'livresSimilaires'));
+        return $query->where('titre', 'like', '%' . $terme . '%')
+                    ->orWhere('auteur', 'like', '%' . $terme . '%');
+    }
+}
+
+// Modèle Catégorie avec relation
+class Categorie extends Model
+{
+    protected $fillable = ['nom', 'slug', 'couleur', 'icone'];
+    
+    // Une catégorie a plusieurs livres
+    public function livres()
+    {
+        return $this->hasMany(Livre::class, 'categorie_id');
     }
 }
 ```
@@ -393,11 +515,23 @@ class LivreController extends Controller
 # Démarrage du serveur
 php artisan serve
 
+# Gestion des migrations (Séance 2)
+php artisan migrate                    # Exécuter les migrations
+php artisan migrate:rollback          # Annuler la dernière migration
+php artisan migrate:reset             # Annuler toutes les migrations
+php artisan migrate:fresh             # Recréer la base complètement
+
+# Gestion des modèles et données (Séance 2)
+php artisan make:model Livre          # Créer un modèle
+php artisan make:migration nom_migration # Créer une migration
+php artisan make:seeder LivreSeeder    # Créer un seeder
+php artisan db:seed                    # Exécuter les seeders
+
+# Interaction avec la base (Séance 2)
+php artisan tinker                     # Console interactive Eloquent
+
 # Nettoyage du cache
 php artisan optimize:clear
-
-# Migration de la base
-php artisan migrate
 
 # Génération de clé
 php artisan key:generate
@@ -458,9 +592,8 @@ tail storage/logs/laravel.log
 ## 🚀 **Évolutions Futures**
 
 ### **Séances Suivantes**
-- **Séance 2** : ✅ **SQLite**, Eloquent ORM, Relations, CI/CD
+- **Séance 2** : **🔄 En cours** - SQLite, Eloquent ORM, Relations, CI/CD
 - **Séance 3** : CRUD complet, Formulaires, Validation
-- **Séance 3** : CRUD complet, formulaires de création/édition
 - **Séance 4** : Authentification Laravel, système de rôles
 - **Séance 5** : Relations entre entités, API REST
 - **Séance 6** : Recherche avancée, cache et performance
@@ -501,7 +634,7 @@ Ce projet est sous licence Creative Commons BY-SA 3.0. Voir le fichier [LICENSE]
 
 **🎯 Prêt à apprendre Laravel avec BiblioTech ? Lancez `scripts\start-simple.bat` !**
 
-*✨ Version Laravel 12 - Formation BTS SIO SLAM - Séances 1 & 2 Complétées - 2025*
+*✨ Version Laravel 12 - Formation BTS SIO SLAM - Séance 1 Terminée, Séance 2 En Cours - 2025*
 
 [![Démarrage Rapide](https://img.shields.io/badge/Démarrage-Rapide-success?style=for-the-badge&logo=laravel)](http://localhost:8000)
 [![Documentation](https://img.shields.io/badge/Documentation-Complète-blue?style=for-the-badge&logo=gitbook)](docs/)
